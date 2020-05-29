@@ -2,8 +2,10 @@ package com.greenfoxacademy.zerothweekproject.modells.daos;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "moviedata")
 public class SimpleMovieData {
   @Id
   private Integer id;
