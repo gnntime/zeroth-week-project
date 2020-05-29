@@ -2,7 +2,6 @@ package com.greenfoxacademy.zerothweekproject.services;
 
 import com.greenfoxacademy.zerothweekproject.modells.daos.MovieData;
 import java.io.IOException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
