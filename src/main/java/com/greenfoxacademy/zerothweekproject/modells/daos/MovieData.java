@@ -3,6 +3,7 @@ package com.greenfoxacademy.zerothweekproject.modells.daos;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
+import javax.persistence.Id;
 
 public class MovieData {
 
@@ -26,6 +27,7 @@ public class MovieData {
   private String homepage;
   @SerializedName("id")
   @Expose
+  @Id
   private Integer id;
   @SerializedName("imdb_id")
   @Expose

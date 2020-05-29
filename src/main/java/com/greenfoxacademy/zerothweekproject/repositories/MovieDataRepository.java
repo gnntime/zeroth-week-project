@@ -1,4 +1,7 @@
 package com.greenfoxacademy.zerothweekproject.repositories;
 
-public interface MovieDataRepository {
+import com.greenfoxacademy.zerothweekproject.modells.daos.SimpleMovieData;
+import org.springframework.data.repository.CrudRepository;
+
+public interface MovieDataRepository extends CrudRepository<SimpleMovieData, Integer> {
 }

@@ -5,4 +5,5 @@ import java.io.IOException;
 
 public interface MovieService {
   MovieData getMovie() throws IOException;
+  void saveMovie(MovieData movieData);
 }
