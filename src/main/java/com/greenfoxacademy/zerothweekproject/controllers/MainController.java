@@ -2,9 +2,9 @@ package com.greenfoxacademy.zerothweekproject.controllers;
 
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationRequest;
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationResponse;
-import com.greenfoxacademy.zerothweekproject.services.MovieService;
+import com.greenfoxacademy.zerothweekproject.services.MovieServiceImpl;
 import com.greenfoxacademy.zerothweekproject.services.MyUserDetailsService;
-import com.greenfoxacademy.zerothweekproject.services.UserService;
+import com.greenfoxacademy.zerothweekproject.services.UserServiceImpl;
 import com.greenfoxacademy.zerothweekproject.utilities.JwtUtil;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,15 +23,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
   private AuthenticationManager authenticationManager;
   private MyUserDetailsService userDetailsService;
-  private UserService userService;
+  private UserServiceImpl userService;
   private JwtUtil jwtUtil;
-  private MovieService movieService;
+  private MovieServiceImpl movieService;
 
   @Autowired
   public MainController(
       AuthenticationManager authenticationManager,
-      MyUserDetailsService userDetailsService, UserService userService,
-      JwtUtil jwtUtil, MovieService movieService) {
+      MyUserDetailsService userDetailsService, UserServiceImpl userService,
+      JwtUtil jwtUtil, MovieServiceImpl movieService) {
     this.authenticationManager = authenticationManager;
     this.userDetailsService = userDetailsService;
     this.userService = userService;
