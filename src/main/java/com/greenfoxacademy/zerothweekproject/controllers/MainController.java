@@ -4,6 +4,7 @@ import com.greenfoxacademy.zerothweekproject.modells.daos.MovieData;
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationRequest;
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationResponse;
 import com.greenfoxacademy.zerothweekproject.services.ApiInterface;
+import com.greenfoxacademy.zerothweekproject.services.MovieService;
 import com.greenfoxacademy.zerothweekproject.services.MyUserDetailsService;
 import com.greenfoxacademy.zerothweekproject.utilities.JwtUtil;
 import java.io.IOException;
@@ -28,19 +29,17 @@ public class MainController {
   private AuthenticationManager authenticationManager;
   private MyUserDetailsService userDetailsService;
   private JwtUtil jwtUtil;
-  public static String BASE_URL = "https://api.themoviedb.org";
-  private String LANGUAGE = "en-US";
-  private String API_KEY = "9818383aba797e6caf0bb0c1dbe33f52";
-  private int PAGE = 1;
+  private MovieService movieService;
 
   @Autowired
   public MainController(
       AuthenticationManager authenticationManager,
       MyUserDetailsService userDetailsService,
-      JwtUtil jwtUtil) {
+      JwtUtil jwtUtil, MovieService movieService) {
     this.authenticationManager = authenticationManager;
     this.userDetailsService = userDetailsService;
     this.jwtUtil = jwtUtil;
+    this.movieService = movieService;
   }
 
   @GetMapping("/register/{name}/{password}")
@@ -67,13 +66,6 @@ public class MainController {
 
   @GetMapping("/getmovie")
   public ResponseEntity<?> getMovie() throws IOException {
-    Retrofit retrofit = new Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build();
-    ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-    Call<MovieData> call = apiInterface.getMovieData(API_KEY, LANGUAGE, PAGE);
-    Response<MovieData> response = call.execute();
-    return ResponseEntity.ok(response.body());
+    return ResponseEntity.ok(movieService.getMovie());
   }
 }
