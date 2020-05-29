@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtUtil {
 
-  private String SECRET_KEY = "secret";
+  private String SECRET_KEY = "secretkey";
 
   public String generateToken(UserDetails userDetails) {
     Map<String, Object> claims = new HashMap<>();

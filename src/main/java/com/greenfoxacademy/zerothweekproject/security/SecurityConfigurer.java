@@ -1,6 +1,5 @@
 package com.greenfoxacademy.zerothweekproject.security;
 
-import com.greenfoxacademy.zerothweekproject.services.MyUserDetailsService;
 import javax.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,34 +15,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
-  private MyUserDetailsService userDetailsService;
-  private Filter jwtRequestFilter;
-
   @Autowired
-  public SecurityConfigurer(
-      MyUserDetailsService userDetailsService, Filter jwtRequestFilter) {
-    this.userDetailsService = userDetailsService;
-    this.jwtRequestFilter = jwtRequestFilter;
-  }
-
-  public SecurityConfigurer(boolean disableDefaults,
-                            MyUserDetailsService userDetailsService,
-                            Filter jwtRequestFilter) {
-    super(disableDefaults);
-    this.userDetailsService = userDetailsService;
-    this.jwtRequestFilter = jwtRequestFilter;
-  }
+  private Filter jwtRequestFilter;
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService);
+    super.configure(auth);
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
         .authorizeRequests()
-        .antMatchers("/authenticate")
+        .antMatchers("/authenticate", "/register/**")
         .permitAll()
         .anyRequest()
         .authenticated()
@@ -61,6 +45,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
   @Bean
   public PasswordEncoder passwordEncoder() {
+    /*return new BCryptPasswordEncoder();*/
     return NoOpPasswordEncoder.getInstance();
   }
 }

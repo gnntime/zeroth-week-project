@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
   private UserRepository userRepository;
-
   @Autowired
+
   public MyUserDetailsService(
       UserRepository userRepository) {
     this.userRepository = userRepository;
@@ -29,5 +29,4 @@ public class MyUserDetailsService implements UserDetailsService {
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     return new UserDetailsImpl(userRepository.findByName(username));
   }
-
 }
