@@ -1,7 +1,5 @@
 package com.greenfoxacademy.zerothweekproject.services;
 
-
-import com.greenfoxacademy.zerothweekproject.modells.daos.User;
 import com.greenfoxacademy.zerothweekproject.repositories.UserRepository;
 import com.greenfoxacademy.zerothweekproject.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
   private UserRepository userRepository;
-  @Autowired
 
+  @Autowired
   public MyUserDetailsService(
       UserRepository userRepository) {
     this.userRepository = userRepository;
-  }
-
-  public void registerUser(String name, String password) {
-    User user = new User(name, password);
-    userRepository.save(user);
   }
 
   @Override

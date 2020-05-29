@@ -25,14 +25,14 @@ communicates with a third party API and stores the received data in a database.
 
 ### Create Token Authentication
 
-Your Web API endpoints should be authorized with a valid JWT Token.
-Use symmetric key to generate tokens with validation date.
+Your Web API endpoints should be authorized with a valid JWT Token. !!!OK!!!
+Use symmetric key to generate tokens with validation date. ???HE???
 
 #### Acceptance Criteria
 
-- The application endpoints required to be authorized
-- The application is validating the token from the request
-- The application endpoints return `401` when the token is invalid or missing
+- The application endpoints required to be authorized  !!!OK!!!
+- The application is validating the token from the request !!!OK!!!
+- The application endpoints return `401` when the token is invalid or missing !!!OK!!!
 
 ### Test Environment
 
@@ -42,9 +42,9 @@ where you connect to an in-memory database.
 #### Acceptance Criteria
 
 - The application should connect to an in-memory database when the environment
-  is set to `Test`
+  is set to `Test` !!!OK!!!
 - The application should connect to a SQL database when the environment is set
-  to `Production`
+  to `Production` !!!OK!!!
 
 ### Mocking
 
