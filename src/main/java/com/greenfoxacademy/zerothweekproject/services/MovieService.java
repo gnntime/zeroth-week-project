@@ -4,6 +4,6 @@ import com.greenfoxacademy.zerothweekproject.modells.daos.MovieData;
 import java.io.IOException;
 
 public interface MovieService {
-  MovieData getMovie() throws IOException;
+  MovieData getMovie(Integer movieId) throws IOException;
   void saveMovie(MovieData movieData);
 }

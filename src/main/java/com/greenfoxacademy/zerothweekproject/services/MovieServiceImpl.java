@@ -22,18 +22,17 @@ public class MovieServiceImpl implements MovieService {
   }
 
   protected static String BASE_URL = "https://api.themoviedb.org";
-  private String LANGUAGE = "en-US";
   private String API_KEY = "9818383aba797e6caf0bb0c1dbe33f52";
-  private int PAGE = 1;
+  private String LANGUAGE = "en-US";
 
   @Override
-  public MovieData getMovie() throws IOException {
+  public MovieData getMovie(Integer movieId) throws IOException {
     Retrofit retrofit = new Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build();
     ApiInterface apiInterface = retrofit.create(ApiInterface.class);
-    Call<MovieData> call = apiInterface.getMovieData(API_KEY, LANGUAGE, PAGE);
+    Call<MovieData> call = apiInterface.getMovieData(movieId, API_KEY, LANGUAGE);
     Response<MovieData> response = call.execute();
     saveMovie(response.body());
     return response.body();
