@@ -2,6 +2,7 @@ package com.greenfoxacademy.zerothweekproject.controllers;
 
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationRequest;
 import com.greenfoxacademy.zerothweekproject.modells.dtos.AuthenticationResponse;
+import com.greenfoxacademy.zerothweekproject.modells.dtos.UserDTO;
 import com.greenfoxacademy.zerothweekproject.services.MovieService;
 import com.greenfoxacademy.zerothweekproject.services.MyUserDetailsService;
 import com.greenfoxacademy.zerothweekproject.services.UserService;
@@ -14,7 +15,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,10 +39,9 @@ public class MainController {
     this.movieService = movieService;
   }
 
-  @GetMapping("/register/{name}/{password}")
-  public void registerUserWithNameAndPassword(@PathVariable("name") String name,
-                                              @PathVariable("password") String password) {
-    userService.registerUser(name, password);
+  @GetMapping("/register")
+  public void registerUserWithNameAndPassword(@RequestBody UserDTO userDTO) {
+    userService.registerUser(userDTO.getUsername(), userDTO.getPassword());
   }
 
   @PostMapping("/authenticate")
